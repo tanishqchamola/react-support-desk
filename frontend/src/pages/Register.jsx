@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register, reset } from "../features/auth/authSlice";
 
+import ProgressBar from "../components/ProgressBar";
 import Spinner from "../components/Spinner";
 
 function Register() {
@@ -34,6 +35,10 @@ function Register() {
 
 		dispatch(reset());
 	}, [isError, isSuccess, user, message, navigate, dispatch]);
+
+	const getPasswordInput = () => {
+		return document.getElementById("password")?.value;
+	};
 
 	const onChange = (e) => {
 		setFormData((prevState) => ({
@@ -79,7 +84,8 @@ function Register() {
 						<input type="email" className="form-control" name="email" id="email" value={email} onChange={onChange} placeholder="Enter your email" required />
 					</div>
 					<div className="form-group">
-						<input type="password" className="form-control" name="password" id="password" value={password} onChange={onChange} placeholder="Enter your password" required />
+						<input type="password" className="form-control scorePassword" name="password" id="password" value={password} onChange={onChange} placeholder="Enter your password" required />
+						<ProgressBar password={getPasswordInput()} />
 					</div>
 					<div className="form-group">
 						<input type="password" className="form-control" name="password2" id="password2" value={password2} onChange={onChange} placeholder="Confirm your password" required />
