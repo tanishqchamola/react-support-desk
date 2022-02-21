@@ -126,7 +126,6 @@ const createTicket = asyncHandler(async (req, res) => {
 	}
 
 	const ticket = await Ticket.create({ product, description, user: req.user.id, status: "new" });
-
 	res.status(201).json(ticket);
 });
 
